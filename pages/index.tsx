@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { useAuth0Token } from 'hooks/useAuth0Token'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const Home: NextPage = () => {
@@ -13,9 +14,29 @@ const Home: NextPage = () => {
       </Head>
 
       <LoginButton /><LogoutButton />
-      <a href="/api/auth/logout">Logout</a>
+      <button onClick={useClickHandle} />
     </div>
   )
+}
+
+const useClickHandle = async () => {
+  const token = useAuth0Token()
+  console.log(token)
+  try {
+    const res = await fetch('http://localhost:8080/me/conversations', {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+    console.log(res.json())
+  } catch(error) {
+    console.log(error)
+  }
 }
 
 const LoginButton = () => {
@@ -28,7 +49,7 @@ const LogoutButton = () => {
   const { logout } = useAuth0();
 
   return (
-    <button onClick={() => logout({ returnTo: window.location.origin })}>
+    <button onClick={() => logout({ returnTo: 'http://localhost:3000' })}>
       Log Out
     </button>
   );
