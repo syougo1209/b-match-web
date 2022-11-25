@@ -8,10 +8,7 @@ const UserRegistrationPage: NextPage = () => {
   return (
     <div>
       <CustomHead />
-      <RegistrationHeader />
-      <Container maxW='container.sm' mt={20}>
-        <NickNameStep />
-      </Container>
+      <UserRegistrationForm />
     </div>
   )
 }

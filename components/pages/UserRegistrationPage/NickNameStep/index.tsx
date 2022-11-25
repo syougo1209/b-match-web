@@ -12,7 +12,6 @@ export const NickNameStep: FC =()=>{
       <Center mt={4}>
         <Input focusBorderColor='teal.200'/>
       </Center>
-      <Button mt={12} w="100%" borderRadius="md" bg="teal.300" color="white">次へ</Button>
     </Box>
   )
 }
