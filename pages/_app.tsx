@@ -1,4 +1,3 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Auth0Provider } from '@auth0/auth0-react';
 import { AuthController } from 'components/layouts/AuthController'
