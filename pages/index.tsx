@@ -5,6 +5,24 @@ import { useAuth0Token } from 'hooks/useAuth0Token'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const Home: NextPage = () => {
+  const token = useAuth0Token()
+  const useClickHandle = async () => {
+    try {
+      const res = await fetch('http://localhost:8080/me/conversations', {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      console.log(res.json())
+    } catch(error) {
+      console.log(error)
+    }
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -17,26 +35,6 @@ const Home: NextPage = () => {
       <button onClick={useClickHandle} />
     </div>
   )
-}
-
-const useClickHandle = async () => {
-  const token = useAuth0Token()
-  console.log(token)
-  try {
-    const res = await fetch('http://localhost:8080/me/conversations', {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    })
-    if (!res.ok) {
-      throw new Error(res.statusText);
-    }
-    console.log(res.json())
-  } catch(error) {
-    console.log(error)
-  }
 }
 
 const LoginButton = () => {
