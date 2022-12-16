@@ -14,7 +14,6 @@ type TRegistrationHeaderProps = {
 
 export const RegistrationHeader: FC<TRegistrationHeaderProps> = (props) => {
   const {step, backStep } = props
-
   return (
     <Box>
       <Container maxW="container.sm">

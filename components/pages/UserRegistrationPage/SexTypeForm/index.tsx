@@ -16,7 +16,6 @@ export const SexTypeForm: FC =()=>{
           {sexTypes.map((value) => {
             const radio = getRadioProps({value})
             return (
-
             )
           })}
         </Flex>

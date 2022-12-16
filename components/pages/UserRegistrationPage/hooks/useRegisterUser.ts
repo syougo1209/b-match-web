@@ -9,4 +9,5 @@ type TUserRegisterForm = {
 
 export const useRegisterUser =()=>{
   const methods = useForm<TUserRegisterForm>()
+  
 }
